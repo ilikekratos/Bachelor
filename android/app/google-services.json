@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "271573812734",
+    "firebase_url": "https://crashapp-f91c3-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "crashapp-f91c3",
+    "storage_bucket": "crashapp-f91c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271573812734:android:5c8ef68bcb5cf437f72caf",
+        "android_client_info": {
+          "package_name": "com.example.crash_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271573812734-1nlcdsvu6makv9uhtni7a562lnc6cple.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJRG3-j3zjeOe2K-dMAEycjFEr2pX8Ahs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271573812734-1nlcdsvu6makv9uhtni7a562lnc6cple.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "271573812734-m0diob468o3n00suvjbk0mptbkfjr592.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.crashApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

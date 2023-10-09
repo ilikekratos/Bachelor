@@ -1,0 +1,26 @@
+def spectrogram(samples, sample_rate, stride_ms = 10.0,window_ms = 25.0, max_freq = sample_rate, eps = 1e-14):
+\nstride_size = int(0.001 * sample_rate * stride_ms)
+\nwindow_size = int(0.001 * sample_rate * window_ms)
+\ntruncate_size = (len(samples) - window_size) % stride_size
+\nsamples = samples[:len(samples) - truncate_size]
+\nnshape = (window_size, (len(samples) - window_size) // stride_size + 1)
+\nnstrides = (samples.strides[0], samples.strides[0] * stride_size)
+\nwindows = np.lib.stride_tricks.as_strided(samples, shape = nshape, strides = nstrides)
+\nassert np.all(windows[:, 1] == samples[stride_size:(stride_size + window_size)])
+\nweighting = np.hanning(window_size)[:, None]
+\nfft = np.fft.rfft(windows * weighting, axis=0)
+\nfft = np.absolute(fft)
+\nfft = fft**2
+\nscale = np.sum(weighting**2) * sample_rate
+\nfft[1:-1, :] *= (2.0 / scale)
+\nfft[(0, -1), :] /= scale
+\nfreqs = float(sample_rate) / window_size * np.arange(fft.shape[0])
+\nind = np.where(freqs <= max_freq)[0][-1]+1
+\nspecgram = np.log(fft[:ind, :] + eps)
+\nreturn specgram
+
+
+audio, sample_rate = librosa.load(arg, sr=16000)
+fft = spectrogram(audio,16000).transpose()[0:198]
+mel = mfcc(audio,sample_rate,nfft=400)[0:198]
+print(np.concatenate((fft,mfcc),axis=1))
