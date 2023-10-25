@@ -1,0 +1,8 @@
+FROM node:18-alpine
+WORKDIR /usr/src/app
+COPY --chown=node:node . .
+EXPOSE 8080
+RUN npm install
+RUN npm install --global nodemon
+RUN npm install --global ts-node
+CMD [ "npm","run","start" ]

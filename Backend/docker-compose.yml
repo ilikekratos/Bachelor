@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+  redis:
+    image: 'redis:latest'
+  postgres:
+    image: 'postgres:latest'
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_PASSWORD: "test123"
+  backend:
+    image: backend
+    ports:
+      - '8080:8080'
+    build:
+      dockerfile: Dockerfile.node
+      context: ./myapp
+    volumes: 
+      - /app/node_modules
+      - ./backend:/app
+  flutter_backend:
+    image: flutter_backend
+    ports:
+      - '5000:5000'
+    build:
+      dockerfile: Dockerfile.flask
+      context: ./pyserver

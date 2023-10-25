@@ -1,0 +1,9 @@
+FROM pytorch/pytorch:latest
+WORKDIR /usr/src/flaskapp
+COPY requirements.txt requirements.txt
+COPY mserver.py mserver.py
+COPY my_model.pt my_model.pt
+RUN pip install --no-cache-dir -r requirements.txt
+COPY ./ ./
+EXPOSE 5000
+CMD ["python3", "mserver.py"]
